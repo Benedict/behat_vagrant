@@ -1,0 +1,11 @@
+---
+
+- name: Add Dotdeb APT key
+  apt_key: url=http://www.dotdeb.org/dotdeb.gpg state=present
+- name: Add Dotdeb APT repositories
+  apt_repository: repo={{item}} state=present
+  with_items:
+    - deb\ http://packages.dotdeb.org\ wheezy\ all
+    - deb-src\ http://packages.dotdeb.org\ wheezy\ all
+- name: update apt cache
+  apt: update_cache=yes

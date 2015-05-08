@@ -1,0 +1,9 @@
+---
+- name: install git
+  apt: name=git state=present
+
+- name: install curl
+  apt: name=curl state=present
+
+- name: install zip
+  apt: name=zip state=present

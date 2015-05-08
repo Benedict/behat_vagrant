@@ -1,0 +1,8 @@
+---
+- name: check if behat exists
+  stat: path=/vagrant/behat/bin
+  register: behat
+
+- name: install behat
+  command: composer install /vagrant/behat
+  when: not behat.stat.exists

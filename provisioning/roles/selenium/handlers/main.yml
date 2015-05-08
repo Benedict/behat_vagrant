@@ -1,0 +1,3 @@
+---
+- name: start selenium
+  service: name=selenium state=started enabled=yes

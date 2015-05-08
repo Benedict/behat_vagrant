@@ -1,0 +1,21 @@
+---
+- name: Install packages required for phantomjs
+  apt: name={{ item }} state=present force=yes
+  with_items:
+    - build-essential 
+    - chrpath
+    - libssl-dev 
+    - libxft-dev
+    - libfreetype6 
+    - libfreetype6-dev
+    - libfontconfig1 
+    - libfontconfig1-dev
+
+- name: download phantomjs
+  get_url: url=https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2 dest=/tmp/phantomjs.tar.bz2
+
+- name: extract phantomjs
+  unarchive: src=/tmp/phantomjs.tar.bz2 dest=/usr/local/share copy=no
+
+- name: symlink phantomjs
+  file: src=/usr/local/share/phantomjs-1.9.8-linux-x86_64/bin/phantomjs dest=/usr/local/bin/phantomjs state=link

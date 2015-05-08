@@ -1,0 +1,13 @@
+---
+- name: add jenkins-ci apt key
+  apt_key: url=https://jenkins-ci.org/debian/jenkins-ci.org.key state=present
+
+- name: add jenkins-ci apt repo
+  apt_repository: repo=deb\ http://pkg.jenkins-ci.org/debian\ binary/ state=present
+
+- name: update apt cache
+  apt: update_cache=yes
+
+- name: install jenkins-ci
+  apt: name=jenkins state=present
+  notify: start jenkins-ci

@@ -1,0 +1,10 @@
+- hosts: all
+  sudo: true
+  roles:
+    - dotdeb
+    - utilities
+    - php
+    - behat
+    - selenium
+    - jenkins
+    - phantomjs

@@ -1,0 +1,24 @@
+---
+- name: Install packages required to compile phantomjs 2
+  apt: name={{ item }} state=present force=yes
+  with_items:
+    - build-essential 
+    - g++ 
+    - flex 
+    - bison
+    - gperf
+    - ruby
+    - perl
+    - libsqlite3-dev
+    - libfontconfig1-dev
+    - libicu-dev
+    - libfreetype6
+    - libssl-dev
+    - libpng-dev
+    - libjpeg-dev
+
+- name: clone phantomjs 2
+  git: repo=git://github.com/ariya/phantomjs.git dest=/tmp/phantomjs version=2.0 accept_hostkey=yes
+
+- name: compile phantomjs
+  command: /tmp/phantomjs/build.sh

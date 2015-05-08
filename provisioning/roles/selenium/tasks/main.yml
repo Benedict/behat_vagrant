@@ -1,0 +1,13 @@
+---
+- name: create selenium directory
+  file: path=/usr/lib/selenium state=directory
+
+- name: download selenium
+  get_url: url=http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar dest=/usr/lib/selenium/selenium-server-standalone.jar
+
+- name: create selenium log directory
+  file: path=/var/log/selenium state=directory mode="a+w"
+
+- name: create selenium service file
+  template: src=selenium.j2 dest=/etc/init.d/selenium mode=0755
+  notify: start selenium
